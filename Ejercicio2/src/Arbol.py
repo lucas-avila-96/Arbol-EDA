@@ -120,9 +120,9 @@ class Arbol:
         if subArbol == None: 
             return subArbol
         elif valor < subArbol.getDato():
-            return self.__suprimir(subArbol.getIzquierdo(), valor)
+            self.__suprimir(subArbol.getIzquierdo(), valor)
         elif valor > subArbol.getDato(): 
-            return self.__suprimir(subArbol.getDerecho(), valor)
+            self.__suprimir(subArbol.getDerecho(), valor)
         else:
             if valor == subArbol.getDato():
                 if self.grado(subArbol) == 0:
