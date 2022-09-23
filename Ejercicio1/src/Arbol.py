@@ -1,4 +1,4 @@
-from src.Nodo import Nodo
+from src.classNodo import Nodo
 
 class Arbol:
     __raiz = None
@@ -108,40 +108,38 @@ class Arbol:
             self.__postOrden(subArbol.getDerecho())
             print(str(subArbol.getDato()) + ' ')
 
- 
-    def suprimir(self, valor):
-        if self.__raiz is not None:
-            return self.__suprimir(self.__raiz, valor)
-
 
     def maximo(self, nodo):
         if nodo.getDerecho() is None:
             return nodo
         return self.maximo(nodo.getDerecho())
+ 
+    def suprimir(self, valor):
+        if self.__raiz is not None:
+            return self.__suprimir(self.__raiz, valor)
 
     def __suprimir(self, subArbol, valor):
         if subArbol == None: 
-            return subArbol
+            return None
         elif valor < subArbol.getDato():
             self.__suprimir(subArbol.getIzquierdo(), valor)
         elif valor > subArbol.getDato(): 
             self.__suprimir(subArbol.getDerecho(), valor)
-        else:
-            if valor == subArbol.getDato():
-                if self.grado(subArbol) == 0:
-                    subArbol = None
-                elif self.grado(subArbol) == 1:
-                    if subArbol.getIzquierda() == None:
-                        subArbol.setDato(subArbol.getDerecho().getDato())
-                    else:
-                        if subArbol.getDerecho() == None:
-                            subArbol.setDato(subArbol.getIzquierdo().getDato())
-                elif self.grado(subArbol) == 2:
-                    temp = self.maximo(subArbol.getIzquierdo())
-                    subArbol.setDato(temp.getDato())
-                    self.__suprimir(temp.getIzquierdo(), temp.getDato())   
-        return subArbol
-        
+        if subArbol.getDato() == valor:
+            if self.grado(subArbol) == 0:
+                subArbol = None
+            elif self.grado(subArbol) == 1:
+                if subArbol.getIzquierdo() == None:
+                    subArbol.setDato(subArbol.getDerecho().getDato())
+                    subArbol.setDerecho(None)
+                elif subArbol.getDerecho() == None:
+                    subArbol.setDato(subArbol.getIzquierdo().getDato())
+                    subArbol.setIzquierdo(None)
+            elif self.grado(subArbol) == 2:
+                temp = self.maximo(subArbol.getIzquierdo())
+                subArbol.setDato(temp.getDato())
+                self.__suprimir(subArbol.getIzquierdo(), temp.getDato()) 
+
 
     def __nivel(self, nodo, valor, nivel):
         if nodo == None:

@@ -40,8 +40,9 @@ if __name__ == '__main__':
     arbol.camino(5, 1)
 
     print(arbol.altura())
+  
     '''
-
-
-    arbol.suprimir(5)
+    arbol.suprimir(15)
     arbol.inOrden()
+
+
