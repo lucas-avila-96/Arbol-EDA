@@ -19,7 +19,6 @@ if __name__ == '__main__':
     '''
     arbol.postOrden()
     arbol.preOrden()
-    arbol.inOrden()
 
     print(result.getDato())
     print(result.getIzquierdo().getDato())
@@ -35,7 +34,6 @@ if __name__ == '__main__':
 
     print(arbol.maximo(nodo))
 
-    arbol.suprimir(5)
     arbol.inOrden()
     nivel = arbol.nivel(15)
     print(nivel)
@@ -44,3 +42,6 @@ if __name__ == '__main__':
     print(arbol.altura())
     '''
 
+
+    arbol.suprimir(5)
+    arbol.inOrden()

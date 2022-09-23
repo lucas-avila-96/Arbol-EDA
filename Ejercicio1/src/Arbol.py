@@ -37,22 +37,6 @@ class Arbol:
                 esHoja = True
         return esHoja
     
-    def __suprimir(self, x):
-        if self.__raiz is not None:
-            self.__suprimir(x, self.__raiz)
-    
-    def __suprimir(self, valor, subArbol):
-        if subArbol is None:
-            print('elemento inexistente')
-        else:
-            if subArbol.getDato() == valor:
-                if self.grado(subArbol) == 0:
-                    pass
-                if self.grado(subArbol) == 1:
-                    pass
-                if self.grado(subArbol) == 2:
-                    pass
-    
     def hijo(self, x, z):
         esHijoIzq = z.getIzquierdo().getDato() == x.getDato()
         esHijoDer = z.getDerecho().getDato() == x.getDato()
