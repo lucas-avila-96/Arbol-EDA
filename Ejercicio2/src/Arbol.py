@@ -32,13 +32,8 @@ class Arbol:
                         nuevoNodo = Nodo(valor)
                         subArbol.setDerecho(nuevoNodo)
 
-    def hoja(self, x):
-        esHoja = False
-        if self.__raiz is not None:
-            hoja = self.__buscar(x, self.__raiz)
-            if hoja.getIzquierdo() is None and hoja.getDerecho() is None:
-                esHoja = True
-        return esHoja
+    def hoja(self, nodo):
+        return self.grado(nodo) == 0
 
     def hijo(self, x, z):
         esHijoIzq = z.getIzquierdo().getDato() == x.getDato()
@@ -49,6 +44,17 @@ class Arbol:
         esHijoIzq = z.getIzquierdo().getDato() == x.getDato()
         esHijoDer = z.getDerecho().getDato() == x.getDato()
         return esHijoIzq or esHijoDer
+
+    def frontera(self):
+        return self.__frontera(self.__raiz)
+
+    def __frontera(self, subArbol):
+        if subArbol is not None:
+            if self.hoja(subArbol):
+                print(str(subArbol.getDato()) + ' ')
+            self.__frontera(subArbol.getIzquierdo())
+            self.__frontera(subArbol.getDerecho())
+
     '''
     def camino(self, x, z):
         if self.__raiz is not None:
